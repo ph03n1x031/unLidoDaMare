@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>un lido d'aMare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="alert-overlay"></div>
+    <div class="custom-alert" id="customAlert">
+        <h3>un lido d'aMare</h3>
+        <p id="alertMessage"></p>
+        <button id="alertButton" onclick="closeAlert()">OK</button>
+    </div>
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+    <div class="container">
+        <img src="https://i.postimg.cc/tJYpxrd1/logo.png" alt="Logo" class="logo">
+        <div id="buttons" class="buttons">
+            <button id="loginBtn" class="roundedModButton">Login</button>
+            <button id="registerBtn" class="roundedModButton">Registrati</button>
+        </div>
+        <div id="loginForm" class="form hidden">
+            <h2>Login</h2>
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" placeholder="Email" aria-label="Email">
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" placeholder="Password" aria-label="Password">
+            <div class="form-buttons">
+                <button id="backBtnLogin" class="roundedModButton">Indietro</button>
+                <button id="loginSubmit" class="roundedModButton">Login</button>
+            </div>
+        </div>
+        <div id="registerForm" class="form hidden">
+            <h2>Registrati</h2>
+            <label for="emailUtente">Email:</label>
+            <input type="email" id="emailUtente" placeholder="Email" aria-label="Email">
+            <label for="pswUtente">Password:</label>
+            <input type="password" id="pswUtente" placeholder="Password" aria-label="Password">
+            <div class="form-buttons">
+                <button id="backBtnRegister" class="roundedModButton">Indietro</button>
+                <button id="registerSubmit" class="roundedModButton">Registrati</button>
+            </div>
+        </div>
+        <div id="bookingSection" class="hidden">
+            <div id="bookingContainer" class="booking-container">
+                <div id="bookingBeachInfo"></div>
+                <div id="bookingKioskInfo"></div>
+                <div id="prenotationButtons" class="form-buttons hidden">
+                    <button id="bookBeachBtn" class="roundedModButton hidden">Prenotazione Spiaggia</button>
+                    <button id="bookKioskBtn" class="roundedModButton hidden">Prenotazione Chiosco</button>
+                </div>
+                <div id="manageBookingButtons" class="form-buttons hidden">
+                    <button id="manageBookingBtn" class="roundedModButton">Modifica Prenotazione Spiaggia</button>
+                    <button id="cancelBookingBtn" class="roundedModButton">Cancella Prenotazione Spiaggia</button>
+                </div>
+                <div id="manageKioskBtn" class="form-buttons hidden">
+                    <button id="manageKioskBookingBtn" class="roundedModButton">Modifica Prenotazione Chiosco</button>
+                    <button id="cancelKioskBookingBtn" class="roundedModButton">Cancella Prenotazione Chiosco</button>
+                </div>
+                <div id="beachBookingForm" class="form hidden">
+                    <p id="seatMessage">Seleziona le date per visualizzare i posti disponibili.</p>
+                    <p><b>Data Inizio:</b> <input type="date" id="startDate" placeholder="Data Inizio" aria-label="Data Inizio"></p>
+                    <p><b>Data Fine:</b> <input type="date" id="endDate" placeholder="Data Fine" aria-label="Data Fine"></p>
+                    <div id="seatSelection" class="seat-selection-container hidden">
+                        <h4>Seleziona il tuo posto</h4>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="A1"><span>A1</span></button>
+                            <button class="seat" data-seat="A2"><span>A2</span></button>
+                            <button class="seat" data-seat="A3"><span>A3</span></button>
+                            <button class="seat" data-seat="A4"><span>A4</span></button>
+                            <button class="seat" data-seat="A5"><span>A5</span></button>
+                            <button class="seat" data-seat="A6"><span>A6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="B1"><span>B1</span></button>
+                            <button class="seat" data-seat="B2"><span>B2</span></button>
+                            <button class="seat" data-seat="B3"><span>B3</span></button>
+                            <button class="seat" data-seat="B4"><span>B4</span></button>
+                            <button class="seat" data-seat="B5"><span>B5</span></button>
+                            <button class="seat" data-seat="B6"><span>B6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="C1"><span>C1</span></button>
+                            <button class="seat" data-seat="C2"><span>C2</span></button>
+                            <button class="seat" data-seat="C3"><span>C3</span></button>
+                            <button class="seat" data-seat="C4"><span>C4</span></button>
+                            <button class="seat" data-seat="C5"><span>C5</span></button>
+                            <button class="seat" data-seat="C6"><span>C6</span></button>
+                        </div>
+                        <div style="height: 20px;"></div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="U1"><span>U1</span></button>
+                            <button class="seat" data-seat="U2"><span>U2</span></button>
+                            <button class="seat" data-seat="U3"><span>U3</span></button>
+                            <button class="seat" data-seat="U4"><span>U4</span></button>
+                            <button class="seat" data-seat="U5"><span>U5</span></button>
+                            <button class="seat" data-seat="U6"><span>U6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="V1"><span>V1</span></button>
+                            <button class="seat" data-seat="V2"><span>V2</span></button>
+                            <button class="seat" data-seat="V3"><span>V3</span></button> 
+                            <button class="seat" data-seat="V4"><span>V4</span></button>
+                            <button class="seat" data-seat="V5"><span>V5</span></button>
+                            <button class="seat" data-seat="V6"><span>V6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="Z1"><span>Z1</span></button>
+                            <button class="seat" data-seat="Z2"><span>Z2</span></button>
+                            <button class="seat" data-seat="Z3"><span>Z3</span></button>
+                            <button class="seat" data-seat="Z4"><span>Z4</span></button>
+                            <button class="seat" data-seat="Z5"><span>Z5</span></button>
+                            <button class="seat" data-seat="Z6"><span>Z6</span></button>
+                        </div>
+                    </div>                    
+                    <input type="hidden" id="selectedSeat" name="selectedSeat">
+                    <div class="form-buttons">
+                        <button id="backBookingBtnBeach" class="roundedModButton">Indietro</button>
+                        <button id="confirmBookingBtn" class="roundedModButton">Effettua Prenotazione Spiaggia</button>
+                    </div>
+                </div>
+                <div id="manageBookingSection" class="form hidden">
+                    <p><b>Data Inizio:</b> <input type="date" id="manageStartDate" placeholder="Data Inizio" aria-label="Data Inizio"></p>
+                    <p><b>Data Fine:</b> <input type="date" id="manageEndDate" placeholder="Data Fine" aria-label="Data Fine"></p>
+                    <p id="seatMessageManage" class="hidden">Seleziona prima le date per visualizzare i posti disponibili.</p>
+                    <div id="manageSeatContainer" class="seat-selection-container hidden">
+                        <h4>Seleziona il tuo posto</h4>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="A1"><span>A1</span></button>
+                            <button class="seat" data-seat="A2"><span>A2</span></button>
+                            <button class="seat" data-seat="A3"><span>A3</span></button>
+                            <button class="seat" data-seat="A4"><span>A4</span></button>
+                            <button class="seat" data-seat="A5"><span>A5</span></button>
+                            <button class="seat" data-seat="A6"><span>A6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="B1"><span>B1</span></button>
+                            <button class="seat" data-seat="B2"><span>B2</span></button>
+                            <button class="seat" data-seat="B3"><span>B3</span></button>
+                            <button class="seat" data-seat="B4"><span>B4</span></button>
+                            <button class="seat" data-seat="B5"><span>B5</span></button>
+                            <button class="seat" data-seat="B6"><span>B6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="C1"><span>C1</span></button>
+                            <button class="seat" data-seat="C2"><span>C2</span></button>
+                            <button class="seat" data-seat="C3"><span>C3</span></button>
+                            <button class="seat" data-seat="C4"><span>C4</span></button>
+                            <button class="seat" data-seat="C5"><span>C5</span></button>
+                            <button class="seat" data-seat="C6"><span>C6</span></button>
+                        </div>
+                        <div style="height: 20px;"></div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="U1"><span>U1</span></button>
+                            <button class="seat" data-seat="U2"><span>U2</span></button>
+                            <button class="seat" data-seat="U3"><span>U3</span></button>
+                            <button class="seat" data-seat="U4"><span>U4</span></button>
+                            <button class="seat" data-seat="U5"><span>U5</span></button>
+                            <button class="seat" data-seat="U6"><span>U6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="V1"><span>V1</span></button>
+                            <button class="seat" data-seat="V2"><span>V2</span></button>
+                            <button class="seat" data-seat="V3"><span>V3</span></button>
+                            <button class="seat" data-seat="V4"><span>V4</span></button>
+                            <button class="seat" data-seat="V5"><span>V5</span></button>
+                            <button class="seat" data-seat="V6"><span>V6</span></button>
+                        </div>
+                        <div class="seat-grid">
+                            <button class="seat" data-seat="Z1"><span>Z1</span></button>
+                            <button class="seat" data-seat="Z2"><span>Z2</span></button>
+                            <button class="seat" data-seat="Z3"><span>Z3</span></button>
+                            <button class="seat" data-seat="Z4"><span>Z4</span></button>
+                            <button class="seat" data-seat="Z5"><span>Z5</span></button>
+                            <button class="seat" data-seat="Z6"><span>Z6</span></button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="manageSelectedSeat" name="manageSelectedSeat">
+                    <div class="form-buttons">
+                        <button id="backBtnBeachManage" class="roundedModButton">Indietro</button>
+                        <button id="updateBookingBtn" class="roundedModButton">Aggiorna Prenotazione Spiaggia</button>
+                    </div>
+                </div>
+                <div id="kioskBookingForm" class="form hidden">
+                    <p id="kioskSeatMessage" class="hidden">Seleziona una data per visualizzare i posti disponibili al chiosco.</p>
+                    <p><b>Data:</b> <input type="date" id="kioskDatePrenotation" placeholder="Data" aria-label="Data"></p>
+                    <div id="kioskSeatSelection" class="seat-selection-container-kiosk hidden">
+                        <h4>Seleziona il tuo posto</h4>
+                        <div class="seat-grid-kiosk">
+                            <div class="kiosk-label">BAR</div>
+                            <button class="seatKiosk" data-seat="K1"><span>K1</span></button>
+                            <button class="seatKiosk" data-seat="K2"><span>K2</span></button>
+                            <button class="seatKiosk" data-seat="K3"><span>K3</span></button>
+                            <button class="seatKiosk" data-seat="K4"><span>K4</span></button>
+                            <button class="seatKiosk" data-seat="K5"><span>K5</span></button>
+                            <button class="seatKiosk" data-seat="K6"><span>K6</span></button>
+                            <button class="seatKiosk" data-seat="K7"><span>K7</span></button>
+                            <button class="seatKiosk" data-seat="K8"><span>K8</span></button>
+                            <button class="seatKiosk" data-seat="K9"><span>K9</span></button>
+                            <button class="seatKiosk" data-seat="K10"><span>K10</span></button>
+                            <button class="seatKiosk" data-seat="K11"><span>K11</span></button>
+                            <button class="seatKiosk" data-seat="K12"><span>K12</span></button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="kioskSelectedSeat" name="kioskSelectedSeat">
+                    <div class="form-buttons">
+                        <button id="backBookingBtnKiosk" class="roundedModButton">Indietro</button>
+                        <button id="confirmKioskBookingBtn" class="roundedModButton">Effettua Prenotazione Chiosco</button>
+                    </div>
+                </div>
+                <div id="manageKioskBookingForm" class="form hidden">
+                    <p id="manageKioskSeatMessage" class="hidden">Seleziona una data per visualizzare i posti disponibili al chiosco.</p>
+                    <p><b>Data:</b> <input type="date" id="manageKioskDatePrenotation" placeholder="Data" aria-label="Data"></p>
+                    <div id="manageKioskSeatSelection" class="seat-selection-container-kiosk hidden">
+                        <h4>Seleziona il tuo posto</h4>
+                        <div class="seat-grid-kiosk">
+                            <button class="seatKiosk" data-seat="K1"><span>K1</span></button>
+                            <button class="seatKiosk" data-seat="K2"><span>K2</span></button>
+                            <button class="seatKiosk" data-seat="K3"><span>K3</span></button>
+                            <button class="seatKiosk" data-seat="K4"><span>K4</span></button>
+                            <button class="seatKiosk" data-seat="K5"><span>K5</span></button>
+                            <button class="seatKiosk" data-seat="K6"><span>K6</span></button>
+                            <button class="seatKiosk" data-seat="K7"><span>K7</span></button>
+                            <button class="seatKiosk" data-seat="K8"><span>K8</span></button>
+                            <button class="seatKiosk" data-seat="K9"><span>K9</span></button>
+                            <button class="seatKiosk" data-seat="K10"><span>K10</span></button>
+                            <button class="seatKiosk" data-seat="K11"><span>K11</span></button>
+                            <button class="seatKiosk" data-seat="K12"><span>K12</span></button>
+                            <div class="kiosk-label">BAR</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="manageKioskSelectedSeat" name="kioskSelectedSeat">
+                    <div class="form-buttons">
+                        <button id="backBtnKioskManage" class="roundedModButton">Indietro</button>
+                        <button id="confirmManageKioskBookingBtn" class="roundedModButton">Modifica Prenotazione Chiosco</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="logoutBtn" class="roundedModButton logout-btn hidden">Logout</button>
+    </div>
+    <footer>
+        <p>© 2024 un lido d'aMare. Tutti i diritti riservati.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
